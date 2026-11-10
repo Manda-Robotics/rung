@@ -1,0 +1,33 @@
+{
+  "description": "Direct-interface profile of the RoboLab leaderboard configuration over the paid Gemini API. Load with `rung --policy direct --profile` or rung.direct_profile.",
+  "model": "gemini-4-argon",
+  "effort": "medium",
+  "max_tokens": 8192,
+  "timeout_s": 900,
+  "direct_config": {
+    "motion_tools": "both",
+    "max_translation_m": 0.35,
+    "max_rotation_rad": 1.57,
+    "max_speed_mps": 0.3,
+    "max_ang_speed_rps": 1.5,
+    "table_projection": true,
+    "stereo_triangulation": true,
+    "camera_geometry_prompt": true,
+    "recent_frames": true,
+    "extra_views": true,
+    "image_scale": 0.3,
+    "action_sequence": true,
+    "max_sequence_steps": 15,
+    "terminal_tools": true,
+    "done_awaits_confirmation": true
+  },
+  "droid": {
+    "history_steps": [
+      14,
+      7
+    ],
+    "extra_cameras": [
+      "over_shoulder_right_camera"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+ "revision": "f27e8f8",
+ "digests": {
+  "default": "24088e47c89a80e073b9b14b5361ed854e31a8b21665c9eabc7ee9d604abd2d9",
+  "aligned_proof": "3a1e680870e2974fae1840ee37d8ecbf413538dfbec7a4dabf809be4a0e60a61",
+  "sequence_table": "9f16dbaf29806052141f4106ee5d995bea81637fe474fcb5687f946d957c3842",
+  "no_terminal": "b7e4ac1537e9c730d84b039479b07a4d9ee78d3bfeacb1ddd955a075c28ef23b"
+ }
+}

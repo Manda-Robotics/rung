@@ -1,0 +1,82 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rung"
+version = "0.1.0"
+description = "A harness that runs frontier models as robot manipulation policies, with RoboLab DROID support"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Manda Robotics" }]
+keywords = ["robotics", "manipulation", "evaluation", "foundation models", "robolab", "isaac sim"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Development Status :: 3 - Alpha",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=2.0",
+  "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pyyaml>=6.0",
+  "pytest>=8.3",
+  "pytest-cov>=7.0",
+  "ruff==0.17.3",
+  "h5py>=3.12",
+  "msgpack>=1.0",
+]
+anthropic = ["anthropic>=1.0"]
+openai = ["openai>=2.0"]
+gemini = ["google-genai>=1.0"]
+fast = ["scipy>=1.11"]
+api = ["websockets>=14", "msgpack>=1.0"]
+
+[project.urls]
+Homepage = "https://mandarobotics.com"
+Repository = "https://github.com/Manda-Robotics/rung"
+Issues = "https://github.com/Manda-Robotics/rung/issues"
+Documentation = "https://github.com/Manda-Robotics/rung/tree/main/docs"
+
+[project.scripts]
+rung = "rung.cli:main"
+rung-probes = "rung.probes:main"
+rung-inspect = "rung.diagnostics:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rung"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/docs", "/examples", "/assets", "/configs", "/tasks", "/deploy", "/README.md", "/CONTRIBUTING.md", "/SECURITY.md", "/CITATION.cff", "/Makefile", "/uv.lock"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["rung"]
+branch = true
+relative_files = true
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+skip_covered = true
+precision = 1
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["tests/fixtures"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

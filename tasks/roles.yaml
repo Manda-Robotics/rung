@@ -1,0 +1,1312 @@
+# tasks/roles.yaml
+#
+# Date: 2026-09-09
+#
+# Rule: committed before tuning. Moving a task from test to validation
+# must be logged in docs/decisions.md, with the reason and the date.
+# The reverse move (validation to test) does not need logging, since it
+# only makes the frozen set stricter.
+#
+# Every one of the 120 RoboLab-120 tasks is assigned to exactly one role:
+#   development (dev)  14 tasks
+#   validation         15 tasks
+#   test               30 tasks
+#   full_only          61 tasks (only run in the 120-task aggregate)
+#
+# Tasks are grouped by template first (see tasks/README.md for the rule).
+# 17 templates total. A template's tasks mostly sit in one role. The two
+# large templates (put_single_in_container, put_all_of_kind_in_bin) are
+# the deliberate exception: they are split across dev, validation and test
+# by object identity, so each role sees different objects on the same
+# skill. All other templates are kept whole within a single role, except
+# where a handful of tasks were pulled out for development as pinpoint-tuned
+# or failed-pinpoint probes (see why_dev on those tasks), and where test
+# takes a few out-of-scope probes (stacking, counting) from otherwise
+# full_only templates, clearly tagged with in_scope: false.
+
+meta:
+  date: 2026-09-09
+  source_tasklist: state-of-general-robot-policies-2026-blogpost-1/data.js
+  source_task_impls: archive/RoboLab-Verified/robolab/tasks/benchmark/*.py
+  # The only templates allowed to span validation and test. Both are large enough
+  # that keeping them whole would put a quarter of the benchmark in one role. They
+  # are split by object identity, so no role sees the same object as another, and
+  # the enforcing test is tests/test_task_roles.py.
+  templates_split_across_roles:
+    - put_single_in_container
+    - put_all_of_kind_in_bin
+  role_counts:
+    development: 14
+    validation: 15
+    test: 30
+    full_only: 61
+  template_counts:
+    pick_only: 7
+    put_single_in_container: 25
+    put_single_on_surface: 4
+    put_all_of_kind_in_bin: 25
+    put_all_of_kind_on_surface: 7
+    shelf: 7
+    remove_from: 5
+    reorient: 4
+    place_on_object: 5
+    stack_on: 5
+    relational_place: 5
+    count_n_in: 4
+    sort: 2
+    pack: 6
+    sequence_two: 2
+    conjunction_and_place: 4
+    conjunction_or_place: 3
+
+templates:
+  - id: pick_only
+  - id: put_single_in_container
+  - id: put_single_on_surface
+  - id: put_all_of_kind_in_bin
+  - id: put_all_of_kind_on_surface
+  - id: shelf
+  - id: remove_from
+  - id: reorient
+  - id: place_on_object
+  - id: stack_on
+  - id: relational_place
+  - id: count_n_in
+  - id: sort
+  - id: pack
+  - id: sequence_two
+  - id: conjunction_and_place
+  - id: conjunction_or_place
+
+tasks:
+  # ---- template: pick_only (7 tasks) ----
+  - name: PickDrillTask
+    template: pick_only
+    role: development
+    difficulty: simple
+    instruction: "Pick up the cordless drill."
+    objects_to_move: 1
+    target_kind: none
+    in_scope: true
+    scope_note: "pure lift, no placement; in scope as a subset of pick-and-place"
+    why_dev: "wide-footprint object with a narrow graspable part (drill body vs. trigger handle) -- representative grasp geometry"
+
+  - name: GrabABagelTask
+    template: pick_only
+    role: full_only
+    difficulty: simple
+    instruction: "Grab a bagel"
+    objects_to_move: "any_of_3"
+    target_kind: none
+    in_scope: true
+    scope_note: "in scope but unassigned; pure lift, choose any instance"
+
+  - name: GrabAFruitTask
+    template: pick_only
+    role: full_only
+    difficulty: simple
+    instruction: "Pick up a fruit"
+    objects_to_move: "any_of_4"
+    target_kind: none
+    in_scope: true
+    scope_note: "in scope but unassigned; pure lift, choose any instance"
+
+  - name: PickGlassesTask
+    template: pick_only
+    role: full_only
+    difficulty: simple
+    instruction: "Pick up the eye glasses"
+    objects_to_move: 1
+    target_kind: none
+    in_scope: true
+    scope_note: "in scope but unassigned; pure lift, no placement"
+
+  - name: PickOrangeObjectTask
+    template: pick_only
+    role: full_only
+    difficulty: simple
+    instruction: "Pick up the orange measuring cup"
+    objects_to_move: 1
+    target_kind: none
+    in_scope: true
+    scope_note: "in scope but unassigned; pure lift, no placement"
+
+  - name: PickUpBluePitcherTask
+    template: pick_only
+    role: full_only
+    difficulty: moderate
+    instruction: "Pick up the large blue pitcher"
+    objects_to_move: 1
+    target_kind: none
+    in_scope: true
+    scope_note: "in scope but unassigned; pure lift, no placement"
+
+  - name: PickUpGreenObjectTask
+    template: pick_only
+    role: full_only
+    difficulty: simple
+    instruction: "Pick up the green vegetable block"
+    objects_to_move: 1
+    target_kind: none
+    in_scope: true
+    scope_note: "in scope but unassigned; pure lift, no placement"
+
+  # ---- template: put_single_in_container (25 tasks) ----
+  - name: BananaInBowlTask
+    template: put_single_in_container
+    role: development
+    difficulty: simple
+    instruction: "Pick up the banana and place it in the bowl"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container, baseline geometry"
+    why_dev: "pinpoint-tuned: vlm-pinpoint controller was tuned directly on this task"
+
+  - name: FruitsOnionTask
+    template: put_single_in_container
+    role: development
+    difficulty: simple
+    instruction: "Put the onion in the wood bowl"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container"
+    why_dev: "pinpoint-tuned: vlm-pinpoint controller was tuned directly on this task"
+
+  - name: OneBottleInSquarePailTask
+    template: put_single_in_container
+    role: development
+    difficulty: simple
+    instruction: "Put any white plastic bottle in the square pail"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "choose 1 of 3 identical bottles into a pail"
+    why_dev: "pinpoint-tuned: vlm-pinpoint controller was tuned directly on this task"
+
+  - name: BowlInBinTask
+    template: put_single_in_container
+    role: validation
+    difficulty: simple
+    instruction: "put the bowl in the grey bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container, dishware"
+
+  - name: CannedFoodInBinTask
+    template: put_single_in_container
+    role: validation
+    difficulty: simple
+    instruction: "Put the canned food in the grey bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container, food can"
+
+  - name: MarkerInMugTask
+    template: put_single_in_container
+    role: validation
+    difficulty: moderate
+    instruction: "Put the whiteboard marker in the mug"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container, narrow mouth target"
+
+  - name: RubiksCubeTask
+    template: put_single_in_container
+    role: validation
+    difficulty: simple
+    instruction: "Put the cube in the bowl"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container, toy"
+
+  - name: SmartphoneInBinTask
+    template: put_single_in_container
+    role: validation
+    difficulty: simple
+    instruction: "Put the smartphone in the grey bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container, electronics"
+
+  - name: ClampInRightBinTask
+    template: put_single_in_container
+    role: test
+    difficulty: simple
+    instruction: "Put the spring clamp in the right bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into a directionally-chosen bin, tool"
+
+  - name: CoffeePotInBinTask
+    template: put_single_in_container
+    role: test
+    difficulty: simple
+    instruction: "Put the coffee pot in the grey bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container, kitchenware"
+
+  - name: MustardInLeftBinTask
+    template: put_single_in_container
+    role: test
+    difficulty: simple
+    instruction: "Put the mustard in the left bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into a directionally-chosen bin, condiment"
+
+  - name: SauceBottlesCrateTask
+    template: put_single_in_container
+    role: test
+    difficulty: simple
+    instruction: "Put the red bbq sauce bottle in the crate"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container, condiment bottle"
+
+  - name: ToyInBinTask
+    template: put_single_in_container
+    role: test
+    difficulty: simple
+    instruction: "Put the lizard away in the bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single object into container, toy"
+
+  - name: BigPumpkinInBinTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Put the bigger pumpkin in the bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; size-comparison target selection"
+
+  - name: CookingPickPastaToolTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Move the pink tool from this utensil container to the other utensil holder"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: FruitsMovingTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Move an orange to the white bowl"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; choose 1 of 2 identical oranges"
+
+  - name: LargerObjectRaisinBoxInBinTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Place the larger object in the grey bin."
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; size-comparison target selection"
+
+  - name: MustardInRightBinTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Put the mustard in the right bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; near-duplicate of MustardInLeftBinTask (mirrored bin)"
+
+  - name: PinkSpoonInPotTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: moderate
+    instruction: "Put the pink spaghetti spoon in the pot"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; affordance grasp"
+
+  - name: SmallPumpkinInBinTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Put the small pumpkin in the bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; size-comparison target selection"
+
+  - name: SmallerObjectButterInBinTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Place the smaller object in the grey bin."
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; size-comparison target selection"
+
+  - name: SpoonInMugTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: moderate
+    instruction: "Put the metal spoon that's in the wooden bowl in the mug"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; source disambiguated by a referring phrase (spoon that's in the bowl)"
+
+  - name: ThrowAwayAppleTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Throw away the apple"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; only 1 instance present despite category-style instruction"
+
+  - name: WoodSpatulaToBowlTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Put the wooden spatula in the bowl"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; wide flat blade with a narrow handle -- kept as a spare geometry case alongside the dev pick_only drill"
+
+  - name: YogurtInBowlTask
+    template: put_single_in_container
+    role: full_only
+    difficulty: simple
+    instruction: "Put the small red yogurt in the red bowl"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; size+color filtered target"
+
+  # ---- template: put_single_on_surface (4 tasks) ----
+  - name: BananaOnPlateTask
+    template: put_single_on_surface
+    role: validation
+    difficulty: simple
+    instruction: "Pick up the banana and put it on the plate"
+    objects_to_move: 1
+    target_kind: surface
+    in_scope: true
+    scope_note: "single object onto an open plate, no walls to lean on"
+
+  - name: FruitsOnionToPlateTask
+    template: put_single_on_surface
+    role: validation
+    difficulty: simple
+    instruction: "Put the onion on the plate"
+    objects_to_move: 1
+    target_kind: surface
+    in_scope: true
+    scope_note: "single object onto an open plate"
+
+  - name: ToolsPickingDrillTask
+    template: put_single_on_surface
+    role: validation
+    difficulty: simple
+    instruction: "Select the cordless drill and put it on the table"
+    objects_to_move: 1
+    target_kind: surface
+    in_scope: true
+    scope_note: "single object onto table"
+
+  - name: ToolsPickingHammerTask
+    template: put_single_on_surface
+    role: validation
+    difficulty: simple
+    instruction: "Select the blue hammer and put it on the table"
+    objects_to_move: 1
+    target_kind: surface
+    in_scope: true
+    scope_note: "single object onto table"
+
+  # ---- template: put_all_of_kind_in_bin (25 tasks) ----
+  - name: CleanUpToysTask
+    template: put_all_of_kind_in_bin
+    role: development
+    difficulty: complex
+    instruction: "Clean up all the smaller toys and leave the birdhouse on the table"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "9 objects, single bin, explicit exclusion (leave the birdhouse)"
+    why_dev: "cluttered-container case: 9 movable objects plus a distractor that must NOT be moved, 300s episode"
+
+  - name: WhiteMugsInBinTask
+    template: put_all_of_kind_in_bin
+    role: development
+    difficulty: simple
+    instruction: "Clean up the white mugs"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin"
+    why_dev: "tried-and-failed pinpoint case: vlm-pinpoint was attempted on this task and did not transfer"
+
+  - name: BBQSauceInBinTask
+    template: put_all_of_kind_in_bin
+    role: validation
+    difficulty: simple
+    instruction: "Put the red BBQ sauce bottles in the grey bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin, condiment bottles"
+
+  - name: ClutterPumpkinTask
+    template: put_all_of_kind_in_bin
+    role: validation
+    difficulty: simple
+    instruction: "Put all the pumpkins away in the bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin, produce"
+
+  - name: ElectronicsInBinTask
+    template: put_all_of_kind_in_bin
+    role: validation
+    difficulty: complex
+    instruction: "Put the electronic devices in the grey bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin, electronics (4 items)"
+
+  - name: RecycleCartonTask
+    template: put_all_of_kind_in_bin
+    role: validation
+    difficulty: simple
+    instruction: "Put the recyclable cartons in the grey bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin, recyclables"
+
+  - name: ClearOrganicObjectsTask
+    template: put_all_of_kind_in_bin
+    role: test
+    difficulty: complex
+    instruction: "Clear away the organic objects"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin, 11 items, complex/long-horizon"
+
+  - name: CondimentsInBinTask
+    template: put_all_of_kind_in_bin
+    role: test
+    difficulty: complex
+    instruction: "Sort the sauce condiments into the grey bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin, condiments (4 items)"
+
+  - name: DishesInBinTask
+    template: put_all_of_kind_in_bin
+    role: test
+    difficulty: moderate
+    instruction: "Put the dishware in the grey bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin, mixed dishware"
+
+  - name: NonHammerToolsInRightBinTask
+    template: put_all_of_kind_in_bin
+    role: test
+    difficulty: moderate
+    instruction: "Put the non-hammer tools in the right bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin, requires excluding hammers by category"
+
+  - name: ThrowAwaySnacksTask
+    template: put_all_of_kind_in_bin
+    role: test
+    difficulty: simple
+    instruction: "Put away the snacks in the bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "all-of-category into one bin, snack items"
+
+  - name: AnimalsInBinTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: simple
+    instruction: "Put the lizards in the bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: BlackItemsInBinTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: complex
+    instruction: "Put the black items in the grey bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; 5 items, color-category across many distractors"
+
+  - name: BlocksInBinTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: complex
+    instruction: "Sort all colored blocks into the bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: ClutterPlasticTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: moderate
+    instruction: "Put all plastic bottles away in the bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: CubesAndBlocksInBinTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: complex
+    instruction: "Put all the cubes and blocks in the bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; 7 items, two categories one destination"
+
+  - name: GreenSpoonsInPotTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: complex
+    instruction: "Put the green spoons in the pot"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; source data tags 'reorientation' but the success check is object_in_container, not object_upright -- treated as a grasp-difficulty flag, not a true reorientation goal"
+
+  - name: HammersInLeftBinTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: moderate
+    instruction: "Put the red hammer and black hammer in the left bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; same instruction text as ToolOrganizationTask, kept as the spare copy"
+
+  - name: PlasticBottlesInSquarePailTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: complex
+    instruction: "Put all the small plastic bottles in the square pail"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; size-filtered category"
+
+  - name: RecycleCartonsVerticalCrateTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: moderate
+    instruction: "Put the cartons that can be recycled in the vertical crate"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; same 2 objects as RecycleCartonTask, different receptacle geometry (vertical crate)"
+
+  - name: RedDishesInBinTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: simple
+    instruction: "Put the red dishware in the grey bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; near-duplicate of RedItemsInBinTask"
+
+  - name: RedItemsInBinTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: moderate
+    instruction: "Put all the red things in the grey bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; near-duplicate of RedDishesInBinTask"
+
+  - name: RubiksCubesInBinTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: complex
+    instruction: "Sort all rubiks cubes into the bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: SpoonsInPotTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: complex
+    instruction: "Put all of the serving spoons with no holes in the pot"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; 'no holes' filter and a 'reorientation' data tag, but success check is object_in_container"
+
+  - name: ToolOrganizationTask
+    template: put_all_of_kind_in_bin
+    role: full_only
+    difficulty: moderate
+    instruction: "Put the red hammer and black hammer in the left bin"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; same instruction text as HammersInLeftBinTask, kept as the spare copy"
+
+  # ---- template: put_all_of_kind_on_surface (7 tasks) ----
+  - name: FruitsOrangesOnPlateTask
+    template: put_all_of_kind_on_surface
+    role: development
+    difficulty: moderate
+    instruction: "Put all the oranges on the plate"
+    objects_to_move: "all"
+    target_kind: surface
+    in_scope: true
+    scope_note: "relational placement onto an open plate + a count/vague attribute mismatch in the source data"
+    why_dev: "tried-and-failed pinpoint case: vlm-pinpoint was attempted on this task and did not transfer; also flags a data quirk -- attributes tag 'counting' but the success check is logical='all' (place both oranges), not a fixed number"
+
+  - name: BagelsOnPlateTask
+    template: put_all_of_kind_on_surface
+    role: full_only
+    difficulty: simple
+    instruction: "Put the bagels on the plate"
+    objects_to_move: "all"
+    target_kind: surface
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: FruitsGreenLimesOnPlateTask
+    template: put_all_of_kind_on_surface
+    role: full_only
+    difficulty: simple
+    instruction: "Put all the green fruit on the plate"
+    objects_to_move: "all"
+    target_kind: surface
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: FruitsOnPlateTask
+    template: put_all_of_kind_on_surface
+    role: full_only
+    difficulty: complex
+    instruction: "Put all the fruits on the plate"
+    objects_to_move: "all"
+    target_kind: surface
+    in_scope: true
+    scope_note: "in scope but unassigned; 7 items, longest episode in the set (300s)"
+
+  - name: MoveBananaToBagelPlateTask
+    template: put_all_of_kind_on_surface
+    role: full_only
+    difficulty: simple
+    instruction: "Move the bananas to the bagel plate"
+    objects_to_move: "all"
+    target_kind: surface
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: RecycleCartonsOnBoxTask
+    template: put_all_of_kind_on_surface
+    role: full_only
+    difficulty: simple
+    instruction: "Put the cartons that can be recycled on the box"
+    objects_to_move: "all"
+    target_kind: surface
+    in_scope: true
+    scope_note: "in scope but unassigned; target is a box top used as an open surface, not its interior"
+
+  - name: ToolsPickingAllHammersTask
+    template: put_all_of_kind_on_surface
+    role: full_only
+    difficulty: complex
+    instruction: "Take out all the hammers and put them on the table"
+    objects_to_move: "all"
+    target_kind: surface
+    in_scope: true
+    scope_note: "in scope but unassigned; take-out-and-place-on-table variant"
+
+  # ---- template: shelf (7 tasks) ----
+  - name: JugsOnShelfTask
+    template: shelf
+    role: development
+    difficulty: simple
+    instruction: "Put all the jugs on the shelf"
+    objects_to_move: "all"
+    target_kind: shelf
+    in_scope: true
+    scope_note: "tall narrow-necked object placed on a shelf"
+    why_dev: "tall-bottle case: utility jugs are the tallest, most tip-prone objects in the set; also the only shelf-template task in dev"
+
+  - name: OneBottleOnShelfTask
+    template: shelf
+    role: test
+    difficulty: simple
+    instruction: "Put any white plastic bottle on the shelf"
+    objects_to_move: 1
+    target_kind: shelf
+    in_scope: true
+    scope_note: "choose 1 of 3 identical bottles onto a shelf"
+
+  - name: PutMugsOnShelfTask
+    template: shelf
+    role: test
+    difficulty: moderate
+    instruction: "Put the two mugs on the shelf"
+    objects_to_move: "all"
+    target_kind: shelf
+    in_scope: true
+    scope_note: "place both named mugs on a shelf"
+
+  - name: TakeMugsOffOfShelfTask
+    template: shelf
+    role: test
+    difficulty: moderate
+    instruction: "Take the mugs off the shelf"
+    objects_to_move: "all"
+    target_kind: shelf
+    in_scope: true
+    scope_note: "remove both mugs from a shelf onto the table"
+
+  - name: TakeSpatulaOffShelfTask
+    template: shelf
+    role: test
+    difficulty: moderate
+    instruction: "Take the spatula off the shelf and put it on the table"
+    objects_to_move: 1
+    target_kind: shelf
+    in_scope: true
+    scope_note: "remove a single object from a shelf onto the table"
+
+  - name: PutBowlOnShelfTopTask
+    template: shelf
+    role: full_only
+    difficulty: simple
+    instruction: "Put the serving bowl anywhere on the shelf in front of you"
+    objects_to_move: 1
+    target_kind: shelf
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: PutTwoMugsOnShelfTask
+    template: shelf
+    role: full_only
+    difficulty: moderate
+    instruction: "Put two (2) mugs on the wire shelf"
+    objects_to_move: 2
+    target_kind: shelf
+    in_scope: true
+    scope_note: "in scope but unassigned; choose 2 of 3 candidate mugs"
+
+  # ---- template: remove_from (5 tasks) ----
+  - name: KeyboardOutOfBinTask
+    template: remove_from
+    role: development
+    difficulty: simple
+    instruction: "Take the keyboard out of the bin and put it on the table"
+    objects_to_move: 1
+    target_kind: surface
+    in_scope: true
+    scope_note: "single object taken out of a bin and placed on the table"
+    why_dev: "removal-direction case: tests whether the harness handles 'take out of X' as reliably as 'put in X' (opposite placement polarity)"
+
+  - name: BananasOutOfBinTask
+    template: remove_from
+    role: test
+    difficulty: moderate
+    instruction: "Take the bananas out"
+    objects_to_move: 2
+    target_kind: surface
+    in_scope: true
+    scope_note: "2 named objects taken out of a bin"
+
+  - name: CookingClearPlateTask
+    template: remove_from
+    role: test
+    difficulty: moderate
+    instruction: "Put the two measuring cups outside of the plate"
+    objects_to_move: 2
+    target_kind: surface
+    in_scope: true
+    scope_note: "2 objects moved outside of a plate's footprint onto the table"
+
+  - name: TakeMeasuringSpoonOutTask
+    template: remove_from
+    role: test
+    difficulty: simple
+    instruction: "Take the white colored measuring spoon out of the red bowl and put it on the table."
+    objects_to_move: 1
+    target_kind: surface
+    in_scope: true
+    scope_note: "single object taken out of a bowl and placed on the table"
+
+  - name: UnstackRubiksCubeTask
+    template: remove_from
+    role: test
+    difficulty: moderate
+    instruction: "Unstack the rubiks cube tower"
+    objects_to_move: 2
+    target_kind: surface
+    in_scope: true
+    scope_note: "objects taken off a pre-built stack and placed on the table individually"
+
+  # ---- template: reorient (4 tasks) ----
+  - name: ReorientAllMugsTask
+    template: reorient
+    role: full_only
+    difficulty: complex
+    instruction: "Reorient all the mugs upright so that the opening is facing upwards."
+    objects_to_move: "all"
+    target_kind: object
+    in_scope: false
+    scope_note: "reorientation: requires in-place regrasp-and-rotate to a target orientation, not a pick-and-place move"
+
+  - name: ReorientJugTask
+    template: reorient
+    role: full_only
+    difficulty: moderate
+    instruction: "Stand the jug upright"
+    objects_to_move: 1
+    target_kind: object
+    in_scope: false
+    scope_note: "reorientation: requires in-place regrasp-and-rotate to a target orientation, not a pick-and-place move"
+
+  - name: ReorientRedMugTask
+    template: reorient
+    role: full_only
+    difficulty: moderate
+    instruction: "Put the red mug upright so that the opening is facing upwards."
+    objects_to_move: 1
+    target_kind: object
+    in_scope: false
+    scope_note: "reorientation: requires in-place regrasp-and-rotate to a target orientation, not a pick-and-place move"
+
+  - name: ReorientWhiteMugsTask
+    template: reorient
+    role: full_only
+    difficulty: moderate
+    instruction: "Make sure all the white mugs are upright so that the opening is facing upwards."
+    objects_to_move: "all"
+    target_kind: object
+    in_scope: false
+    scope_note: "reorientation: requires in-place regrasp-and-rotate to a target orientation, not a pick-and-place move"
+
+  # ---- template: place_on_object (5 tasks) ----
+  - name: BowlStackingRightOnLeftTask
+    template: place_on_object
+    role: development
+    difficulty: simple
+    instruction: "Stack the right bowl on the left bowl"
+    objects_to_move: 1
+    target_kind: object
+    in_scope: true
+    scope_note: "single object placed into/onto another single object (success check is object_in_container, not a tower 'stacked' predicate)"
+    why_dev: "tried-and-failed pinpoint case: vlm-pinpoint was attempted on this task and did not transfer, despite this being a simple single-object placement"
+
+  - name: BowlStackingLeftOnRightTask
+    template: place_on_object
+    role: test
+    difficulty: simple
+    instruction: "Stack the left bowl on the right bowl"
+    objects_to_move: 1
+    target_kind: object
+    in_scope: true
+    scope_note: "single object placed into/onto another single object"
+
+  - name: ButterAboveRaisinTask
+    template: place_on_object
+    role: test
+    difficulty: simple
+    instruction: "Pick up the butter box and place it on top of the raisin box"
+    objects_to_move: 1
+    target_kind: object
+    in_scope: true
+    scope_note: "single object placed on top of another single object"
+
+  - name: MouseOnKeyboardTask
+    template: place_on_object
+    role: test
+    difficulty: simple
+    instruction: "Put the computer mouse on the keyboard"
+    objects_to_move: 1
+    target_kind: object
+    in_scope: true
+    scope_note: "single object placed on top of another single object"
+
+  - name: MustardAboveRaisinTask
+    template: place_on_object
+    role: full_only
+    difficulty: simple
+    instruction: "Place the mustard on the raisin box."
+    objects_to_move: 1
+    target_kind: object
+    in_scope: true
+    scope_note: "in scope but unassigned; single object placed on top of another single object"
+
+  # ---- template: stack_on (5 tasks) ----
+  - name: BlockStackingOrderAgnosticTask
+    template: stack_on
+    role: test
+    difficulty: complex
+    instruction: "Stack the blocks into a tower"
+    objects_to_move: 4
+    target_kind: stack
+    in_scope: false
+    scope_note: "out-of-scope probe (clearly tagged): stacking a 4-block tower needs precise vertical alignment and re-grasp planning beyond a bin/plate placement tolerance"
+
+  - name: StackYellowOnRedTask
+    template: stack_on
+    role: test
+    difficulty: moderate
+    instruction: "Stack the yellow block on the red block"
+    objects_to_move: 2
+    target_kind: stack
+    in_scope: false
+    scope_note: "out-of-scope probe (clearly tagged): 2-block tower, uses the `stacked` predicate not a container check"
+
+  - name: BlockStackingSpecifiedOrderTask
+    template: stack_on
+    role: full_only
+    difficulty: complex
+    instruction: "Stack the blocks in the order from bottom to top: red, blue, green, yellow"
+    objects_to_move: 4
+    target_kind: stack
+    in_scope: false
+    scope_note: "stacking: order-sensitive 4-block tower, out of scope for a single-arm parallel-jaw pick-and-place harness"
+
+  - name: Stack3RubiksCubeTask
+    template: stack_on
+    role: full_only
+    difficulty: moderate
+    instruction: "Stack the rubiks cubes in a tower"
+    objects_to_move: 3
+    target_kind: stack
+    in_scope: false
+    scope_note: "stacking: 3-cube tower, out of scope for a single-arm parallel-jaw pick-and-place harness"
+
+  - name: StackWhiteMugsTask
+    template: stack_on
+    role: full_only
+    difficulty: moderate
+    instruction: "Stack the white mugs on top of each other."
+    objects_to_move: 1
+    target_kind: stack
+    in_scope: false
+    scope_note: "stacking: mug-on-mug tower via the `stacked` predicate, out of scope for a single-arm parallel-jaw pick-and-place harness"
+
+  # ---- template: relational_place (5 tasks) ----
+  - name: RubiksCubeLeftOfBowlTask
+    template: relational_place
+    role: development
+    difficulty: moderate
+    instruction: "Put the rubiks cube to the left of the bowl"
+    objects_to_move: 1
+    target_kind: object
+    in_scope: true
+    scope_note: "single object placed at a directional position relative to a landmark object"
+    why_dev: "tried-and-failed pinpoint case: vlm-pinpoint was attempted on this task and did not transfer; also the representative relational-placement case for dev"
+
+  - name: RubiksCubeBehindBowlTask
+    template: relational_place
+    role: test
+    difficulty: moderate
+    instruction: "Put the rubiks cube behind the bowl"
+    objects_to_move: 1
+    target_kind: object
+    in_scope: true
+    scope_note: "directional placement relative to a landmark object"
+
+  - name: RubiksCubeInFrontOfBowlTask
+    template: relational_place
+    role: test
+    difficulty: moderate
+    instruction: "Put the rubiks cube in front of the bowl"
+    objects_to_move: 1
+    target_kind: object
+    in_scope: true
+    scope_note: "directional placement relative to a landmark object"
+
+  - name: WhiteMugInCenterOfTableTask
+    template: relational_place
+    role: test
+    difficulty: moderate
+    instruction: "Put the white mug in the center of the table."
+    objects_to_move: 1
+    target_kind: surface
+    in_scope: true
+    scope_note: "positional placement with no landmark object (center of table)"
+
+  - name: RubiksCubeRightOfBowlTask
+    template: relational_place
+    role: full_only
+    difficulty: moderate
+    instruction: "Put the rubiks cube to the right of the bowl"
+    objects_to_move: 1
+    target_kind: object
+    in_scope: true
+    scope_note: "in scope but unassigned; directional placement relative to a landmark object"
+
+  # ---- template: count_n_in (4 tasks) ----
+  - name: BananasInCrateTask
+    template: count_n_in
+    role: development
+    difficulty: moderate
+    instruction: "Put 2 bananas in the crate"
+    objects_to_move: 2
+    target_kind: container
+    in_scope: false
+    scope_note: "counting: 'put 2 bananas in the crate' requires tracking a target count, out of scope for a plain pick-and-place harness"
+    why_dev: "pinpoint-tuned: vlm-pinpoint controller was tuned directly on this task, despite being an out-of-scope counting template; kept in dev as a diagnostic probe"
+
+  - name: BananasInBinThreeTotalTask
+    template: count_n_in
+    role: test
+    difficulty: moderate
+    instruction: "Make sure there are 3 (three) bananas in the grey bin."
+    objects_to_move: "choose_to_3_total"
+    target_kind: container
+    in_scope: false
+    scope_note: "out-of-scope probe (clearly tagged): counting -- must reason about how many bananas are already in the bin"
+
+  - name: FruitsOnPlate3Task
+    template: count_n_in
+    role: test
+    difficulty: complex
+    instruction: "Put three (3) fruits on the plate"
+    objects_to_move: 3
+    target_kind: surface
+    in_scope: false
+    scope_note: "out-of-scope probe (clearly tagged): counting -- 'put three (3) fruits on the plate' requires tracking a target count"
+
+  - name: BananasInBinOneMoreTask
+    template: count_n_in
+    role: full_only
+    difficulty: moderate
+    instruction: "Put one (1) more bananas in the grey bin."
+    objects_to_move: "choose_1"
+    target_kind: container
+    in_scope: false
+    scope_note: "counting: 'one (1) more' requires tracking the current count in the bin, out of scope for a plain pick-and-place harness"
+
+  # ---- template: sort (2 tasks) ----
+  - name: FoodPackingByColorTask
+    template: sort
+    role: full_only
+    difficulty: moderate
+    instruction: "Pack yellow objects in right container and blue object in the left container"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: false
+    scope_note: "sorting: two destination bins chosen by color, out of scope for a single-destination pick-and-place harness"
+
+  - name: ToolOrganizationBothTask
+    template: sort
+    role: full_only
+    difficulty: moderate
+    instruction: "Put hammers in the right bin and do not touch anything else"
+    objects_to_move: "all"
+    target_kind: container
+    in_scope: false
+    scope_note: "sorting: two destination bins chosen by tool category, out of scope for a single-destination pick-and-place harness"
+
+  # ---- template: pack (6 tasks) ----
+  - name: FoodPacking1CansTask
+    template: pack
+    role: development
+    difficulty: simple
+    instruction: "Pack canned foods into the bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "single-item pack into a bin"
+    why_dev: "tried-and-failed pinpoint case: vlm-pinpoint was attempted on this task and did not transfer"
+
+  - name: FoodPacking2CansTask
+    template: pack
+    role: test
+    difficulty: simple
+    instruction: "Pack canned foods into the bin"
+    objects_to_move: 2
+    target_kind: container
+    in_scope: true
+    scope_note: "multi-item pack into a bin, cans"
+
+  - name: FoodPacking3BoxesTask
+    template: pack
+    role: test
+    difficulty: moderate
+    instruction: "Pack boxed foods into the bin"
+    objects_to_move: 3
+    target_kind: container
+    in_scope: true
+    scope_note: "multi-item pack into a bin, boxes"
+
+  - name: FoodPacking1BoxesTask
+    template: pack
+    role: full_only
+    difficulty: simple
+    instruction: "Pack boxed foods into the bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: FoodPacking2BoxesTask
+    template: pack
+    role: full_only
+    difficulty: simple
+    instruction: "Pack boxed foods into the bin"
+    objects_to_move: 2
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  - name: FoodPacking3CansTask
+    template: pack
+    role: full_only
+    difficulty: moderate
+    instruction: "Pack canned foods into the bin"
+    objects_to_move: 3
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned"
+
+  # ---- template: sequence_two (2 tasks) ----
+  - name: BananaThenRubiksCubeTask
+    template: sequence_two
+    role: full_only
+    difficulty: simple
+    instruction: "put the banana then the cube in the bowl"
+    objects_to_move: 2
+    target_kind: container
+    in_scope: "partial"
+    scope_note: "two single-object placements are each in scope, but the explicit 'then' ordering constraint (finish A before starting B) adds a temporal-sequencing check beyond plain pick-and-place"
+
+  - name: RubiksCubeThenBananaTask
+    template: sequence_two
+    role: full_only
+    difficulty: simple
+    instruction: "Put the cube then the banana in the bowl"
+    objects_to_move: 2
+    target_kind: container
+    in_scope: "partial"
+    scope_note: "two single-object placements are each in scope, but the explicit 'then' ordering constraint (finish A before starting B) adds a temporal-sequencing check beyond plain pick-and-place"
+
+  # ---- template: conjunction_and_place (4 tasks) ----
+  - name: AppleAndYogurtInBowlTask
+    template: conjunction_and_place
+    role: full_only
+    difficulty: moderate
+    instruction: "Put the apple and yogurt in the bowl"
+    objects_to_move: 2
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; 2 named objects, AND-conjunction instruction"
+
+  - name: RubiksCubeAndBananaTask
+    template: conjunction_and_place
+    role: full_only
+    difficulty: simple
+    instruction: "Put the cube and the banana in the bowl"
+    objects_to_move: 2
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; 2 named objects, AND-conjunction instruction"
+
+  - name: UtensilsInMugTask
+    template: conjunction_and_place
+    role: full_only
+    difficulty: moderate
+    instruction: "Put the fork and spoon in the ceramicmug"
+    objects_to_move: 2
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; 2 named objects, AND-conjunction instruction"
+
+  - name: YellowAndWhiteObjectsInBinTask
+    template: conjunction_and_place
+    role: full_only
+    difficulty: simple
+    instruction: "Put all white objects and yellow objects in the grey bin"
+    objects_to_move: 2
+    target_kind: container
+    in_scope: true
+    scope_note: "in scope but unassigned; 2 named objects, AND-conjunction instruction"
+
+  # ---- template: conjunction_or_place (3 tasks) ----
+  - name: RubiksCubeOrBananaTask
+    template: conjunction_or_place
+    role: development
+    difficulty: simple
+    instruction: "Put the cube or the banana in the bowl"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "disjunction (OR) instruction: choose exactly one of two different named objects"
+    why_dev: "logical-connector case: OR-language handling was not one of the pinpoint-tuned tasks, added to give dev coverage of AND/OR/THEN instruction parsing alongside the sequence_two and conjunction_and_place templates"
+
+  - name: FruitsMovingOrangeOrLimeTask
+    template: conjunction_or_place
+    role: validation
+    difficulty: simple
+    instruction: "Move an orange or a lime to the wood bowl"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "disjunction (OR) instruction across two categories, 4 candidates"
+
+  - name: PhoneOrRemoteInBinTask
+    template: conjunction_or_place
+    role: validation
+    difficulty: simple
+    instruction: "Put the phone or the remote in the grey bin"
+    objects_to_move: 1
+    target_kind: container
+    in_scope: true
+    scope_note: "disjunction (OR) instruction across two categories"
+

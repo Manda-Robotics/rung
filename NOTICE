@@ -1,0 +1,8 @@
+Rung
+Copyright 2026 Manda Robotics
+
+This product includes software developed at Manda Robotics (https://mandarobotics.com).
+
+Rung runs alongside, but does not include, NVIDIA RoboLab (https://github.com/NVlabs/RoboLab,
+Apache-2.0, Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES) and NVIDIA Isaac Sim and
+Isaac Lab, which are distributed by NVIDIA under their own licenses.

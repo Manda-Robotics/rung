@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use Rung in your research, please cite it as below."
+title: "Rung: a harness for running frontier models as robot manipulation policies"
+type: software
+authors:
+  - name: "Manda Robotics"
+version: "0.1.0"
+date-released: "2026-11-10"
+license: Apache-2.0
+repository-code: "https://github.com/Manda-Robotics/rung"
+url: "https://mandarobotics.com"
+keywords:
+  - robotics
+  - manipulation
+  - evaluation
+  - foundation models
+  - RoboLab

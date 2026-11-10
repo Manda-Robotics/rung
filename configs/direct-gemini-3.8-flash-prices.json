@@ -1,0 +1,6 @@
+{
+  "input_per_million": 0.75,
+  "output_per_million": 3.75,
+  "cached_per_million": 0.075,
+  "source": "https://ai.google.dev/gemini-api/docs/pricing; verified 2026-10-13; standard Gemini 3.8 Flash USD rates through 2026-12-31 only; no paid tools"
+}

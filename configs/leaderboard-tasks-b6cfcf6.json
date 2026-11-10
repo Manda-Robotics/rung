@@ -1,0 +1,727 @@
+{
+ "source": "NVlabs/RoboLab b6cfcf6 robolab/tasks/_metadata/task_metadata.json",
+ "source_sha256": "ad7553707eed0d945e98ca4a5fdd8277eb31eecf5b2b64217a74debc47abb654",
+ "count": 120,
+ "tasks": [
+  {
+   "task": "AnimalsInBinTask",
+   "episode_s": 90.0,
+   "file": "benchmark/animals_in_bin.py",
+   "instruction_default": "Put the lizards in the bin"
+  },
+  {
+   "task": "AppleAndYogurtInBowlTask",
+   "episode_s": 120.0,
+   "file": "benchmark/apple_and_yogurt_in_bowl_task.py",
+   "instruction_default": "Put the apple and yogurt in the bowl"
+  },
+  {
+   "task": "BBQSauceInBinTask",
+   "episode_s": 90.0,
+   "file": "benchmark/bbq_sauce_in_bin_task.py",
+   "instruction_default": "Put the red BBQ sauce bottles in the grey bin"
+  },
+  {
+   "task": "BagelsOnPlateTask",
+   "episode_s": 60.0,
+   "file": "benchmark/bagel_on_plate_task.py",
+   "instruction_default": "Put the bagels on the plate"
+  },
+  {
+   "task": "BananaInBowlTask",
+   "episode_s": 50.0,
+   "file": "benchmark/banana_in_bowl_task.py",
+   "instruction_default": "Pick up the banana and place it in the bowl"
+  },
+  {
+   "task": "BananaOnPlateTask",
+   "episode_s": 40.0,
+   "file": "benchmark/banana_on_plate_task.py",
+   "instruction_default": "Pick up the banana and put it on the plate"
+  },
+  {
+   "task": "BananaThenRubiksCubeTask",
+   "episode_s": 60.0,
+   "file": "benchmark/banana_then_rubiks_cube.py",
+   "instruction_default": "put the banana then the cube in the bowl"
+  },
+  {
+   "task": "BananasInBinOneMoreTask",
+   "episode_s": 60.0,
+   "file": "benchmark/bananas_in_bin_one_more.py",
+   "instruction_default": "Put one (1) more bananas in the grey bin."
+  },
+  {
+   "task": "BananasInBinThreeTotalTask",
+   "episode_s": 60.0,
+   "file": "benchmark/bananas_in_bin_three.py",
+   "instruction_default": "Make sure there are 3 (three) bananas in the grey bin."
+  },
+  {
+   "task": "BananasInCrateTask",
+   "episode_s": 60.0,
+   "file": "benchmark/bananas_in_crate.py",
+   "instruction_default": "Put 2 bananas in the crate"
+  },
+  {
+   "task": "BananasOutOfBinTask",
+   "episode_s": 90.0,
+   "file": "benchmark/bananas_out_of_bin.py",
+   "instruction_default": "Take the bananas out"
+  },
+  {
+   "task": "BigPumpkinInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/clutter_big_pumpkin_task.py",
+   "instruction_default": "Put the bigger pumpkin in the bin"
+  },
+  {
+   "task": "BlackItemsInBinTask",
+   "episode_s": 120.0,
+   "file": "benchmark/black_items_in_bin.py",
+   "instruction_default": "Put the black items in the grey bin"
+  },
+  {
+   "task": "BlockStackingOrderAgnosticTask",
+   "episode_s": 90.0,
+   "file": "benchmark/block_stacking_order_agnostic_task.py",
+   "instruction_default": "Stack the blocks into a tower"
+  },
+  {
+   "task": "BlockStackingSpecifiedOrderTask",
+   "episode_s": 90.0,
+   "file": "benchmark/block_stacking_specified_order_task.py",
+   "instruction_default": "Stack the blocks in the order from bottom to top: red, blue, green, yellow"
+  },
+  {
+   "task": "BlocksInBinTask",
+   "episode_s": 150.0,
+   "file": "benchmark/blocks_in_bin.py",
+   "instruction_default": "Sort all colored blocks into the bin"
+  },
+  {
+   "task": "BowlInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/bowl_in_bin_task.py",
+   "instruction_default": "put the bowl in the grey bin"
+  },
+  {
+   "task": "BowlStackingLeftOnRightTask",
+   "episode_s": 20.0,
+   "file": "benchmark/bowl_stacking_left_on_right.py",
+   "instruction_default": "Stack the left bowl on the right bowl"
+  },
+  {
+   "task": "BowlStackingRightOnLeftTask",
+   "episode_s": 20.0,
+   "file": "benchmark/bowl_stacking_right_on_left.py",
+   "instruction_default": "Stack the right bowl on the left bowl"
+  },
+  {
+   "task": "ButterAboveRaisinTask",
+   "episode_s": 40.0,
+   "file": "benchmark/butter_above_raisin_task.py",
+   "instruction_default": "Pick up the butter box and place it on top of the raisin box"
+  },
+  {
+   "task": "CannedFoodInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/canned_food_in_bin_task.py",
+   "instruction_default": "Put the canned food in the grey bin"
+  },
+  {
+   "task": "ClampInRightBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/clamp_in_right_bin.py",
+   "instruction_default": "Put the spring clamp in the right bin"
+  },
+  {
+   "task": "CleanUpToysTask",
+   "episode_s": 300.0,
+   "file": "benchmark/clean_up_toys.py",
+   "instruction_default": "Clean up all the smaller toys and leave the birdhouse on the table"
+  },
+  {
+   "task": "ClearOrganicObjectsTask",
+   "episode_s": 240.0,
+   "file": "benchmark/clutter_organic_objects_task.py",
+   "instruction_default": "Clear away the organic objects"
+  },
+  {
+   "task": "ClutterPlasticTask",
+   "episode_s": 180.0,
+   "file": "benchmark/clutter_plastic_task.py",
+   "instruction_default": "Put all plastic bottles away in the bin"
+  },
+  {
+   "task": "ClutterPumpkinTask",
+   "episode_s": 90.0,
+   "file": "benchmark/clutter_pumpkin_task.py",
+   "instruction_default": "Put all the pumpkins away in the bin"
+  },
+  {
+   "task": "CoffeePotInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/coffee_pot_in_bin.py",
+   "instruction_default": "Put the coffee pot in the grey bin"
+  },
+  {
+   "task": "CondimentsInBinTask",
+   "episode_s": 180.0,
+   "file": "benchmark/condiments_in_bin_task.py",
+   "instruction_default": "Sort the sauce condiments into the grey bin"
+  },
+  {
+   "task": "CookingClearPlateTask",
+   "episode_s": 180.0,
+   "file": "benchmark/cooking_clear_plate_specific.py",
+   "instruction_default": "Put the two measuring cups outside of the plate"
+  },
+  {
+   "task": "CookingPickPastaToolTask",
+   "episode_s": 60.0,
+   "file": "benchmark/cooking_pick_pasta_tool.py",
+   "instruction_default": "Move the pink tool from this utensil container to the other utensil holder"
+  },
+  {
+   "task": "CubesAndBlocksInBinTask",
+   "episode_s": 240.0,
+   "file": "benchmark/cubes_and_blocks_in_bin.py",
+   "instruction_default": "Put all the cubes and blocks in the bin"
+  },
+  {
+   "task": "DishesInBinTask",
+   "episode_s": 180.0,
+   "file": "benchmark/dishes_in_bin.py",
+   "instruction_default": "Put the dishware in the grey bin"
+  },
+  {
+   "task": "ElectronicsInBinTask",
+   "episode_s": 180.0,
+   "file": "benchmark/electronics_in_bin_task.py",
+   "instruction_default": "Put the electronic devices in the grey bin"
+  },
+  {
+   "task": "FoodPacking1BoxesTask",
+   "episode_s": 60.0,
+   "file": "benchmark/foodpacking_1bin_1box.py",
+   "instruction_default": "Pack boxed foods into the bin"
+  },
+  {
+   "task": "FoodPacking1CansTask",
+   "episode_s": 60.0,
+   "file": "benchmark/foodpacking_1bin_1can.py",
+   "instruction_default": "Pack canned foods into the bin"
+  },
+  {
+   "task": "FoodPacking2BoxesTask",
+   "episode_s": 180.0,
+   "file": "benchmark/foodpacking_1bin_2box.py",
+   "instruction_default": "Pack boxed foods into the bin"
+  },
+  {
+   "task": "FoodPacking2CansTask",
+   "episode_s": 180.0,
+   "file": "benchmark/foodpacking_1bin_2can.py",
+   "instruction_default": "Pack canned foods into the bin"
+  },
+  {
+   "task": "FoodPacking3BoxesTask",
+   "episode_s": 240.0,
+   "file": "benchmark/foodpacking_1bin_3box.py",
+   "instruction_default": "Pack boxed foods into the bin"
+  },
+  {
+   "task": "FoodPacking3CansTask",
+   "episode_s": 240.0,
+   "file": "benchmark/foodpacking_1bin_3can.py",
+   "instruction_default": "Pack canned foods into the bin"
+  },
+  {
+   "task": "FoodPackingByColorTask",
+   "episode_s": 120.0,
+   "file": "benchmark/food_packing_by_color_task.py",
+   "instruction_default": "Pack yellow objects in right container and blue object in the left container"
+  },
+  {
+   "task": "FruitsGreenLimesOnPlateTask",
+   "episode_s": 90.0,
+   "file": "benchmark/fruits_green_limes_on_plate.py",
+   "instruction_default": "Put all the green fruit on the plate"
+  },
+  {
+   "task": "FruitsMovingOrangeOrLimeTask",
+   "episode_s": 60.0,
+   "file": "benchmark/fruits_move_orange_or_lime.py",
+   "instruction_default": "Move an orange or a lime to the wood bowl"
+  },
+  {
+   "task": "FruitsMovingTask",
+   "episode_s": 60.0,
+   "file": "benchmark/fruits_move_orange.py",
+   "instruction_default": "Move an orange to the white bowl"
+  },
+  {
+   "task": "FruitsOnPlate3Task",
+   "episode_s": 200.0,
+   "file": "benchmark/fruits_to_plate_3.py",
+   "instruction_default": "Put three (3) fruits on the plate"
+  },
+  {
+   "task": "FruitsOnPlateTask",
+   "episode_s": 300.0,
+   "file": "benchmark/fruits_to_plate.py",
+   "instruction_default": "Put all the fruits on the plate"
+  },
+  {
+   "task": "FruitsOnionTask",
+   "episode_s": 60.0,
+   "file": "benchmark/fruits_onion_to_bowl.py",
+   "instruction_default": "Put the onion in the wood bowl"
+  },
+  {
+   "task": "FruitsOnionToPlateTask",
+   "episode_s": 60.0,
+   "file": "benchmark/fruits_onion_to_plate.py",
+   "instruction_default": "Put the onion on the plate"
+  },
+  {
+   "task": "FruitsOrangesOnPlateTask",
+   "episode_s": 90.0,
+   "file": "benchmark/fruits_oranges_on_plate.py",
+   "instruction_default": "Put all the oranges on the plate"
+  },
+  {
+   "task": "GrabABagelTask",
+   "episode_s": 30.0,
+   "file": "benchmark/grab_a_bagel.py",
+   "instruction_default": "Grab a bagel"
+  },
+  {
+   "task": "GrabAFruitTask",
+   "episode_s": 30.0,
+   "file": "benchmark/grab_a_fruit.py",
+   "instruction_default": "Pick up a fruit"
+  },
+  {
+   "task": "GreenSpoonsInPotTask",
+   "episode_s": 180.0,
+   "file": "benchmark/green_spoons_in_pot.py",
+   "instruction_default": "Put the green spoons in the pot"
+  },
+  {
+   "task": "HammersInLeftBinTask",
+   "episode_s": 180.0,
+   "file": "benchmark/tool_organization_left_task.py",
+   "instruction_default": "Put the red hammer and black hammer in the left bin"
+  },
+  {
+   "task": "JugsOnShelfTask",
+   "episode_s": 120.0,
+   "file": "benchmark/jugs_on_shelf_task.py",
+   "instruction_default": "Put all the jugs on the shelf"
+  },
+  {
+   "task": "KeyboardOutOfBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/keyboard_out_of_bin_task.py",
+   "instruction_default": "Take the keyboard out of the bin and put it on the table"
+  },
+  {
+   "task": "LargerObjectRaisinBoxInBinTask",
+   "episode_s": 30.0,
+   "file": "benchmark/bigger_object.py",
+   "instruction_default": "Place the larger object in the grey bin."
+  },
+  {
+   "task": "MarkerInMugTask",
+   "episode_s": 40.0,
+   "file": "benchmark/marker_in_mug_task.py",
+   "instruction_default": "Put the whiteboard marker in the mug"
+  },
+  {
+   "task": "MouseOnKeyboardTask",
+   "episode_s": 60.0,
+   "file": "benchmark/mouse_on_keyboard.py",
+   "instruction_default": "Put the computer mouse on the keyboard"
+  },
+  {
+   "task": "MoveBananaToBagelPlateTask",
+   "episode_s": 90.0,
+   "file": "benchmark/move_banana_to_bagel_plate.py",
+   "instruction_default": "Move the bananas to the bagel plate"
+  },
+  {
+   "task": "MustardAboveRaisinTask",
+   "episode_s": 40.0,
+   "file": "benchmark/mustard_above_raisin_task.py",
+   "instruction_default": "Place the mustard on the raisin box. "
+  },
+  {
+   "task": "MustardInLeftBinTask",
+   "episode_s": 30.0,
+   "file": "benchmark/mustard_in_left_bin.py",
+   "instruction_default": "Put the mustard in the left bin"
+  },
+  {
+   "task": "MustardInRightBinTask",
+   "episode_s": 30.0,
+   "file": "benchmark/mustard_in_right_bin.py",
+   "instruction_default": "Put the mustard in the right bin"
+  },
+  {
+   "task": "NonHammerToolsInRightBinTask",
+   "episode_s": 180.0,
+   "file": "benchmark/non_hammer_tools_in_right_bin.py",
+   "instruction_default": "Put the non-hammer tools in the right bin"
+  },
+  {
+   "task": "OneBottleInSquarePailTask",
+   "episode_s": 60.0,
+   "file": "benchmark/one_bottle_in_square_pail.py",
+   "instruction_default": "Put any white plastic bottle in the square pail"
+  },
+  {
+   "task": "OneBottleOnShelfTask",
+   "episode_s": 60.0,
+   "file": "benchmark/one_bottle_on_shelf_task.py",
+   "instruction_default": "Put any white plastic bottle on the shelf"
+  },
+  {
+   "task": "PhoneOrRemoteInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/phone_or_remote_in_bin_task.py",
+   "instruction_default": "Put the phone or the remote in the grey bin"
+  },
+  {
+   "task": "PickDrillTask",
+   "episode_s": 40.0,
+   "file": "benchmark/pick_drill.py",
+   "instruction_default": "Pick up the cordless drill."
+  },
+  {
+   "task": "PickGlassesTask",
+   "episode_s": 30.0,
+   "file": "benchmark/pick_glasses_task.py",
+   "instruction_default": "Pick up the eye glasses"
+  },
+  {
+   "task": "PickOrangeObjectTask",
+   "episode_s": 60.0,
+   "file": "benchmark/cooking_orange_object.py",
+   "instruction_default": "Pick up the orange measuring cup"
+  },
+  {
+   "task": "PickUpBluePitcherTask",
+   "episode_s": 30.0,
+   "file": "benchmark/pick_up_blue_pitcher.py",
+   "instruction_default": "Pick up the large blue pitcher"
+  },
+  {
+   "task": "PickUpGreenObjectTask",
+   "episode_s": 30.0,
+   "file": "benchmark/pick_up_green_object.py",
+   "instruction_default": "Pick up the green vegetable block"
+  },
+  {
+   "task": "PinkSpoonInPotTask",
+   "episode_s": 60.0,
+   "file": "benchmark/pink_spoon_in_pot.py",
+   "instruction_default": "Put the pink spaghetti spoon in the pot"
+  },
+  {
+   "task": "PlasticBottlesInSquarePailTask",
+   "episode_s": 180.0,
+   "file": "benchmark/bottles_on_shelf_task.py",
+   "instruction_default": "Put all the small plastic bottles in the square pail"
+  },
+  {
+   "task": "PutBowlOnShelfTopTask",
+   "episode_s": 60.0,
+   "file": "benchmark/put_bowl_on_shelf.py",
+   "instruction_default": "Put the serving bowl anywhere on the shelf in front of you"
+  },
+  {
+   "task": "PutMugsOnShelfTask",
+   "episode_s": 180.0,
+   "file": "benchmark/put_mugs_on_shelf.py",
+   "instruction_default": "Put the two mugs on the shelf"
+  },
+  {
+   "task": "PutTwoMugsOnShelfTask",
+   "episode_s": 180.0,
+   "file": "benchmark/put_two_mugs_on_shelf.py",
+   "instruction_default": "Put two (2) mugs on the wire shelf"
+  },
+  {
+   "task": "RecycleCartonTask",
+   "episode_s": 90.0,
+   "file": "benchmark/recycle_cartons.py",
+   "instruction_default": "Put the recyclable cartons in the grey bin"
+  },
+  {
+   "task": "RecycleCartonsOnBoxTask",
+   "episode_s": 90.0,
+   "file": "benchmark/recycle_cartons_on_box.py",
+   "instruction_default": "Put the cartons that can be recycled on the box"
+  },
+  {
+   "task": "RecycleCartonsVerticalCrateTask",
+   "episode_s": 90.0,
+   "file": "benchmark/recycle_cartons_vertical_crate.py",
+   "instruction_default": "Put the cartons that can be recycled in the vertical crate"
+  },
+  {
+   "task": "RedDishesInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/red_dishes_in_bin.py",
+   "instruction_default": "Put the red dishware in the grey bin"
+  },
+  {
+   "task": "RedItemsInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/red_items_in_bin.py",
+   "instruction_default": "Put all the red things in the grey bin"
+  },
+  {
+   "task": "ReorientAllMugsTask",
+   "episode_s": 90.0,
+   "file": "benchmark/reorient_all_mugs_task.py",
+   "instruction_default": "Reorient all the mugs upright so that the opening is facing upwards."
+  },
+  {
+   "task": "ReorientJugTask",
+   "episode_s": 60.0,
+   "file": "benchmark/reorient_jug.py",
+   "instruction_default": "Stand the jug upright"
+  },
+  {
+   "task": "ReorientRedMugTask",
+   "episode_s": 60.0,
+   "file": "benchmark/reorient_red_mugs_task.py",
+   "instruction_default": "Put the red mug upright so that the opening is facing upwards."
+  },
+  {
+   "task": "ReorientWhiteMugsTask",
+   "episode_s": 60.0,
+   "file": "benchmark/reorient_white_mugs.py",
+   "instruction_default": "Make sure all the white mugs are upright so that the opening is facing upwards."
+  },
+  {
+   "task": "RubiksCubeAndBananaTask",
+   "episode_s": 60.0,
+   "file": "benchmark/rubiks_cube_and_banana_task.py",
+   "instruction_default": "Put the cube and the banana in the bowl"
+  },
+  {
+   "task": "RubiksCubeBehindBowlTask",
+   "episode_s": 30.0,
+   "file": "benchmark/rubiks_cube_behind_bowl.py",
+   "instruction_default": "Put the rubiks cube behind the bowl"
+  },
+  {
+   "task": "RubiksCubeInFrontOfBowlTask",
+   "episode_s": 30.0,
+   "file": "benchmark/rubiks_cube_in_front_of_bowl.py",
+   "instruction_default": "Put the rubiks cube in front of the bowl"
+  },
+  {
+   "task": "RubiksCubeLeftOfBowlTask",
+   "episode_s": 30.0,
+   "file": "benchmark/rubiks_cube_left_of_bowl.py",
+   "instruction_default": "Put the rubiks cube to the left of the bowl"
+  },
+  {
+   "task": "RubiksCubeOrBananaTask",
+   "episode_s": 30.0,
+   "file": "benchmark/rubiks_cube_or_banana_task.py",
+   "instruction_default": "Put the cube or the banana in the bowl"
+  },
+  {
+   "task": "RubiksCubeRightOfBowlTask",
+   "episode_s": 30.0,
+   "file": "benchmark/rubiks_cube_right_of_bowl.py",
+   "instruction_default": "Put the rubiks cube to the right of the bowl"
+  },
+  {
+   "task": "RubiksCubeTask",
+   "episode_s": 40.0,
+   "file": "benchmark/rubiks_cube_task.py",
+   "instruction_default": "Put the cube in the bowl"
+  },
+  {
+   "task": "RubiksCubeThenBananaTask",
+   "episode_s": 60.0,
+   "file": "benchmark/rubiks_cube_then_banana.py",
+   "instruction_default": "Put the cube then the banana in the bowl"
+  },
+  {
+   "task": "RubiksCubesInBinTask",
+   "episode_s": 120.0,
+   "file": "benchmark/rubiks_cubes_in_bin.py",
+   "instruction_default": "Sort all rubiks cubes into the bin"
+  },
+  {
+   "task": "SauceBottlesCrateTask",
+   "episode_s": 40.0,
+   "file": "benchmark/sauce_bottles_crate_task.py",
+   "instruction_default": "Put the red bbq sauce bottle in the crate"
+  },
+  {
+   "task": "SmallPumpkinInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/clutter_small_pumpkin_task.py",
+   "instruction_default": "Put the small pumpkin in the bin"
+  },
+  {
+   "task": "SmallerObjectButterInBinTask",
+   "episode_s": 30.0,
+   "file": "benchmark/smaller_object.py",
+   "instruction_default": "Place the smaller object in the grey bin."
+  },
+  {
+   "task": "SmartphoneInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/smartphone_in_bin_task.py",
+   "instruction_default": "Put the smartphone in the grey bin"
+  },
+  {
+   "task": "SpoonInMugTask",
+   "episode_s": 60.0,
+   "file": "benchmark/spoon_in_mug_task.py",
+   "instruction_default": "Put the metal spoon that's in the wooden bowl in the mug"
+  },
+  {
+   "task": "SpoonsInPotTask",
+   "episode_s": 180.0,
+   "file": "benchmark/spoons_in_pot.py",
+   "instruction_default": "Put all of the serving spoons with no holes in the pot"
+  },
+  {
+   "task": "Stack3RubiksCubeTask",
+   "episode_s": 60.0,
+   "file": "benchmark/rubiks_cube_stacking_task.py",
+   "instruction_default": "Stack the rubiks cubes in a tower"
+  },
+  {
+   "task": "StackWhiteMugsTask",
+   "episode_s": 60.0,
+   "file": "benchmark/stack_white_mugs_task.py",
+   "instruction_default": "Stack the white mugs on top of each other."
+  },
+  {
+   "task": "StackYellowOnRedTask",
+   "episode_s": 60.0,
+   "file": "benchmark/stack_yellow_on_red.py",
+   "instruction_default": "Stack the yellow block on the red block"
+  },
+  {
+   "task": "TakeMeasuringSpoonOutTask",
+   "episode_s": 40.0,
+   "file": "benchmark/take_measuring_spoon_out.py",
+   "instruction_default": "Take the white colored measuring spoon out of the red bowl and put it on the table."
+  },
+  {
+   "task": "TakeMugsOffOfShelfTask",
+   "episode_s": 180.0,
+   "file": "benchmark/take_mugs_off_of_shelf.py",
+   "instruction_default": "Take the mugs off the shelf"
+  },
+  {
+   "task": "TakeSpatulaOffShelfTask",
+   "episode_s": 60.0,
+   "file": "benchmark/take_spatula_off_shelf.py",
+   "instruction_default": "Take the spatula off the shelf and put it on the table"
+  },
+  {
+   "task": "ThrowAwayAppleTask",
+   "episode_s": 60.0,
+   "file": "benchmark/throw_away_apple_task.py",
+   "instruction_default": "Throw away the apple"
+  },
+  {
+   "task": "ThrowAwaySnacksTask",
+   "episode_s": 120.0,
+   "file": "benchmark/throw_away_snacks_task.py",
+   "instruction_default": "Put away the snacks in the bin"
+  },
+  {
+   "task": "ToolOrganizationBothTask",
+   "episode_s": 180.0,
+   "file": "benchmark/tool_organization_both_task.py",
+   "instruction_default": "Put hammers in the right bin and do not touch anything else"
+  },
+  {
+   "task": "ToolOrganizationTask",
+   "episode_s": 180.0,
+   "file": "benchmark/tool_organization_task.py",
+   "instruction_default": "Put the red hammer and black hammer in the left bin"
+  },
+  {
+   "task": "ToolsPickingAllHammersTask",
+   "episode_s": 240.0,
+   "file": "benchmark/tools_picking_all_hammers.py",
+   "instruction_default": "Take out all the hammers and put them on the table"
+  },
+  {
+   "task": "ToolsPickingDrillTask",
+   "episode_s": 60.0,
+   "file": "benchmark/tools_picking_drill.py",
+   "instruction_default": "Select the cordless drill and put it on the table"
+  },
+  {
+   "task": "ToolsPickingHammerTask",
+   "episode_s": 60.0,
+   "file": "benchmark/tools_picking_hammer.py",
+   "instruction_default": "Select the blue hammer and put it on the table"
+  },
+  {
+   "task": "ToyInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/lizard_in_bin_task.py",
+   "instruction_default": "Put the lizard away in the bin"
+  },
+  {
+   "task": "UnstackRubiksCubeTask",
+   "episode_s": 90.0,
+   "file": "benchmark/unstack_rubiks_cube.py",
+   "instruction_default": "Unstack the rubiks cube tower"
+  },
+  {
+   "task": "UtensilsInMugTask",
+   "episode_s": 90.0,
+   "file": "benchmark/utensils_in_mug.py",
+   "instruction_default": "Put the fork and spoon in the ceramicmug"
+  },
+  {
+   "task": "WhiteMugInCenterOfTableTask",
+   "episode_s": 30.0,
+   "file": "benchmark/white_mug_in_center_of_table.py",
+   "instruction_default": "Put the white mug in the center of the table."
+  },
+  {
+   "task": "WhiteMugsInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/white_mugs_in_bin.py",
+   "instruction_default": "Clean up the white mugs"
+  },
+  {
+   "task": "WoodSpatulaToBowlTask",
+   "episode_s": 60.0,
+   "file": "benchmark/wood_spatula_to_bowl.py",
+   "instruction_default": "Put the wooden spatula in the bowl"
+  },
+  {
+   "task": "YellowAndWhiteObjectsInBinTask",
+   "episode_s": 60.0,
+   "file": "benchmark/yellow_and_white_objects_in_bin.py",
+   "instruction_default": "Put all white objects and yellow objects in the grey bin"
+  },
+  {
+   "task": "YogurtInBowlTask",
+   "episode_s": 40.0,
+   "file": "benchmark/yogurt_in_bowl.py",
+   "instruction_default": "Put the small red yogurt in the red bowl"
+  }
+ ]
+}
