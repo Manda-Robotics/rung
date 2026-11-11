@@ -80,7 +80,7 @@ You can inspect and export the offline example first, without service access:
 
 ```sh
 python examples/mock_episode.py --out runs/example
-python examples/inspect_recording.py runs/example --export episode.zip
+python examples/inspect_recording.py runs/example --export runs/episode.zip
 ```
 
 The mock has calibrated cameras, metric depth, occlusion and a jaw that holds objects
@@ -118,7 +118,16 @@ API key and upstream [RoboLab](https://github.com/NVlabs/RoboLab) with Isaac Sim
 The container recipe requires validation on your GPU and driver stack before a full run.
 
 Benchmark outputs, recordings and intermediate reports are generated locally and are
-excluded from this repository. This README makes no benchmark score claim.
+excluded from this repository.
+
+## Results
+
+Gemini 4 Argon (medium) through the direct interface solved **1,019 of 1,200 RoboLab-120
+episodes (84.9%, Wilson 95% interval 82.8 to 86.8)**: 120 tasks x 10 episodes on upstream
+RoboLab `9cce00c` with its unmodified grader, Isaac Sim 6.0.1, NVIDIA L40S. Physics is
+paused while the model thinks. Every episode, video, grader log and uncounted attempt is in
+the [results dataset](https://huggingface.co/datasets/manda-robotics/rung-robolab120-gemini4-argon),
+in RoboLab's own output format.
 
 ## Inspect and extend
 
@@ -129,7 +138,9 @@ Inspect existing evidence with:
 rung-inspect runs/first --out runs/first/inspection.json
 ```
 
-To add a simulator or hardware adapter, implement `Embodiment` (`capabilities`, `reset`,
+To run your own model, open-weight or local, implement the three-member `ModelBackend`;
+[bring your own model](docs/own-model.md) has a complete backend for any
+OpenAI-compatible server (vLLM, SGLang, Ollama). To add a simulator or hardware adapter, implement `Embodiment` (`capabilities`, `reset`,
 `observe`, `execute`) and pass the probes. See the
 [contract and adapter checklist](docs/contracts.md).
 

@@ -8,6 +8,7 @@ The guides below render directly on GitHub and are included in source distributi
 | [Quickstart](quickstart.md) | Offline runs, paid model setup, budgets and output files |
 | [Examples](../examples/README.md) | Offline examples, a remote API client, and recording inspection/export |
 | [Interfaces](interfaces.md) | Direct control, L0 pose targets and L2 semantic primitives |
+| [Bring your own model](own-model.md) | The model seam and a backend for OpenAI-compatible servers (vLLM, SGLang, Ollama) |
 | [Contracts and adapters](contracts.md) | Frames, units, observations, actions, traces and adapter checklist |
 | [Evaluation protocol](protocol.md) | Task roles, timing, controls, budgets and reporting |
 | [RoboLab deployment](../deploy/robolab/README.md) | Single-GPU setup, calibration, probes and task suites |

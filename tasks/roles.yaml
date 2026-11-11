@@ -26,8 +26,8 @@
 
 meta:
   date: 2026-09-09
-  source_tasklist: state-of-general-robot-policies-2026-blogpost-1/data.js
-  source_task_impls: archive/RoboLab-Verified/robolab/tasks/benchmark/*.py
+  source_tasklist: the 120 RoboLab benchmark tasks (configs/leaderboard-tasks-b6cfcf6.json)
+  source_task_impls: robolab/tasks/benchmark/*.py in RoboLab
   # The only templates allowed to span validation and test. Both are large enough
   # that keeping them whole would put a quarter of the benchmark in one role. They
   # are split by object identity, so no role sees the same object as another, and

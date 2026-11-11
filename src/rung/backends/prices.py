@@ -31,7 +31,7 @@ PRICES: dict[str, Price] = {
     "claude-sonnet-5": Price(2.0, 10.0, 0.20),
     "claude-haiku-4-5": Price(1.0, 5.0, 0.10),
     # Google. Gemini 3.7 Flash is at an introductory rate that doubles on 2027-01-01.
-    "gemini-4-argon": Price(2.0, 10.0, 0.10, "standard introductory rate through 2026-11-30"),
+    "gemini-4-argon": Price(2.0, 10.0, 0.10, "introductory rate as of 2026-10-16"),
     "gemini-3.7-flash": Price(0.75, 3.75, 0.075, "introductory rate through 2026-12-31"),
     "gemini-robotics-er-2-preview": Price(1.0, 5.0, None, "preview rate through 2026"),
     "gemini-3.1-pro-preview": Price(2.0, 12.0, 0.20, "prompts up to 200k tokens"),

@@ -4,6 +4,10 @@ Architecture decision records for rung. Entries are dated and numbered. A later 
 that changes an earlier one gets its own number and names the entry it supersedes; the
 superseded entry carries a pointer forward.
 
+Several early entries (for example ADR-007 and ADR-013) were written while Rung ran on a
+patched RoboLab fork. The public [RoboLab guide](../deploy/robolab/README.md) targets
+upstream RoboLab with its unmodified grader; see the [evaluation protocol](protocol.md).
+
 | ADR | Date | Title | Status |
 |---|---|---|---|
 | [001](#adr-001-new-repository) | 2026-09-09 | New repository | Accepted |

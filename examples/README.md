@@ -7,8 +7,9 @@ The first two examples use only the core dependencies, run on a CPU, and make no
 |---|---|---|
 | [Scripted episode](mock_episode.py) | `python examples/mock_episode.py` | Create an embodiment, apply limits, run a pick-and-place policy and read the result |
 | [Direct control with a fake model](direct_mock.py) | `python examples/direct_mock.py` | Model session, tool calls, measured receipts and usage accounting |
+| [Your own model](own_model.py) | `python examples/own_model.py --selftest` | A complete backend for any OpenAI-compatible endpoint, run on the mock; `--selftest` needs no model |
 | [Remote API episode](remote_episode.py) | `python examples/remote_episode.py --out runs/remote` | Connect a local environment to a provisioned API and save observations/actions locally |
-| [Inspect and export](inspect_recording.py) | `python examples/inspect_recording.py runs/example --export episode.zip` | Read a recording and export original files with SHA-256 checksums; standard library only |
+| [Inspect and export](inspect_recording.py) | `python examples/inspect_recording.py runs/example --export runs/episode.zip` | Read a recording and export original files with SHA-256 checksums; standard library only |
 | [One RoboLab episode](robolab_episode.py) | `python examples/robolab_episode.py --out /out/first` | Inside the GPU container: calibrate, probe, run one Gemini task, and keep native recordings |
 | [Read native controls](read_robolab.py) | `python examples/read_robolab.py PATH/TO/run_0.hdf5` | Inspect dense actions and robot state after a RoboLab episode; requires h5py, no GPU |
 
@@ -52,7 +53,7 @@ uv pip install -e ".[api]"
 export RUNG_API_URL="wss://YOUR-PROVISIONED-ENDPOINT"
 export RUNG_API_KEY="YOUR-RUNG-KEY"
 python examples/remote_episode.py --out runs/remote --max-usd 0.50 --max-model-calls 12
-python examples/inspect_recording.py runs/remote --export remote-episode.zip
+python examples/inspect_recording.py runs/remote --export runs/remote-episode.zip
 ```
 
 The mock runs on your CPU, while the service chooses motions. Calls can incur service

@@ -12,8 +12,8 @@ Rung runs against two evaluator trees:
 * Upstream main 9cce00c (v0.3.2 plus the merged PR #47, Isaac Sim 6.0.1 / Isaac Lab 3; the
   pre-merge PR head d839ddf likewise) ships the same ``isaaclab_compat`` module as the fork,
   so the module alone does not identify the tree.
-  The fork is recognised by a fork-only module (``robolab.core.task.confirm``, P30
-  confirmed success); a tree with the compat module but without it is upstream, and its
+  The fork is recognised by a fork-only module (``robolab.core.task.confirm``, which
+  confirms success); a tree with the compat module but without it is upstream, and its
   own compat module is used.
 
 Nothing here imports Isaac Lab, robolab or torch at import time, so the module is safe
@@ -28,7 +28,7 @@ from types import SimpleNamespace
 from typing import Any
 
 FORK_MODULE = "robolab.core.utils.isaaclab_compat"
-# Fork-only module (P30 confirmed success). Present in every RoboLab-Verified tree Rung
+# Fork-only module (success confirmation). Present in every RoboLab-Verified tree Rung
 # runs (frozen 12d60f3 and later), absent from upstream v0.3.2, PR #47 and main 9cce00c.
 FORK_MARKER = "robolab.core.task.confirm"
 VERIFIED = "verified"

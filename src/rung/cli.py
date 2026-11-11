@@ -14,7 +14,7 @@
     # --model fake replays a fixed tool-call script, so no API key is needed.
     rung --scene banana_in_bowl --policy direct --model fake
     rung --scene banana_in_bowl --policy direct --model gemini-4-argon \\
-        --profile configs/gemini-4-argon-api.json
+        --profile configs/gemini-4-argon-direct.json
 
     # every scene, three episodes each, with traces, recordings and provenance
     rung --all --episodes 3 --policy l2 --model gemini-3.7-flash \\
@@ -161,7 +161,18 @@ def main(argv: list[str] | None = None) -> int:
     for scene in scenes:
         for episode in range(args.episodes):
             embodiment = SCENES[scene]()
-            policy = build_policy(args, embodiment)
+            try:
+                policy = build_policy(args, embodiment)
+            except ValueError as exc:
+                if "credential" in str(exc).lower() or "api key" in str(exc).lower():
+                    print(
+                        f"rung: {str(exc).rstrip('.')}. Set the model's API key "
+                        "(for example GEMINI_API_KEY), or use --policy scripted or "
+                        "--policy direct --model fake.",
+                        file=sys.stderr,
+                    )
+                    return 2
+                raise
             seed = args.seed if args.seed is not None else (episode or None)
             result = run_episode(
                 embodiment,
