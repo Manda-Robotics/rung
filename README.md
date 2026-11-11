@@ -126,7 +126,7 @@ Gemini 4 Argon (medium) through the direct interface solved **1,019 of 1,200 Rob
 episodes (84.9%, Wilson 95% interval 82.8 to 86.8)**: 120 tasks x 10 episodes on upstream
 RoboLab `9cce00c` with its unmodified grader, Isaac Sim 6.0.1, NVIDIA L40S. Physics is
 paused while the model thinks. Every episode, video, grader log and uncounted attempt is in
-the [results dataset](https://huggingface.co/datasets/manda-robotics/rung-robolab120-gemini4-argon),
+the [results dataset](https://huggingface.co/datasets/mandarobotics/rung-robolab120-gemini4-argon),
 in RoboLab's own output format.
 
 ## Inspect and extend
