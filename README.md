@@ -22,7 +22,7 @@ two-arm ARX X5 rig in Isaac Sim.
 [RoboDojo guide](deploy/robodojo/README.md) ·
 [Contributing](CONTRIBUTING.md)
 
-![One recorded RoboLab episode](assets/robolab-demo.gif)
+https://github.com/user-attachments/assets/80b573a7-8c22-49bb-973e-ca83048ddff2
 
 Gemini 4 Argon on RoboLab; native task grade: success. The video shows simulation time,
 with physics paused during inference. [Download the complete worked recording](https://github.com/Manda-Robotics/rung/releases/download/v0.1.0/example-robolab-episode.zip)
