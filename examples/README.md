@@ -1,12 +1,13 @@
 # Examples
 
 Run these from the repository root after [installation](../README.md#installation).
-The first two examples use only the core dependencies, run on a CPU, and make no API requests.
+The first three examples use only the core dependencies, run on a CPU, and make no API requests.
 
 | Example | Run | What it shows |
 |---|---|---|
 | [Scripted episode](mock_episode.py) | `python examples/mock_episode.py` | Create an embodiment, apply limits, run a pick-and-place policy and read the result |
 | [Direct control with a fake model](direct_mock.py) | `python examples/direct_mock.py` | Model session, tool calls, measured receipts and usage accounting |
+| [Two arms on RoboDojo's call sequence](robodojo_mock.py) | `python examples/robodojo_mock.py` | The dual ARX X5 codec, the two-arm bridge and the bimanual Direct tools on a CPU fake, with the fake model or `--policy scripted` |
 | [Your own model](own_model.py) | `python examples/own_model.py --selftest` | A complete backend for any OpenAI-compatible endpoint, run on the mock; `--selftest` needs no model |
 | [Remote API episode](remote_episode.py) | `python examples/remote_episode.py --out runs/remote` | Connect a local environment to a provisioned API and save observations/actions locally |
 | [Inspect and export](inspect_recording.py) | `python examples/inspect_recording.py runs/example --export runs/episode.zip` | Read a recording and export original files with SHA-256 checksums; standard library only |
@@ -25,7 +26,8 @@ Git. The direct example prints a task failure and exits zero when its expected f
 script completes: it tests plumbing and does not attempt a successful pick and place.
 
 For a paid model run, see the [quickstart](../docs/quickstart.md#use-a-model).
-For a GPU benchmark, follow the [RoboLab guide](../deploy/robolab/README.md).
+For a GPU benchmark, follow the [RoboLab guide](../deploy/robolab/README.md); for two
+arms, the [RoboDojo guide](../deploy/robodojo/README.md).
 
 ## Inspect a real recorded episode
 

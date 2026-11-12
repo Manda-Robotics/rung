@@ -1,0 +1,15 @@
+policy_name: Rung
+protocol: ws
+host: localhost
+port: null
+bench_name: null
+task_name: null
+ckpt_name: null
+env_cfg_type: null
+seed: null
+action_type: null
+gpu_id: null
+eval_batch: false
+# Rung waits on a model between actions; keep the websocket alive through long calls.
+ws_ping_interval_s: 60.0
+ws_ping_timeout_s: 600.0
