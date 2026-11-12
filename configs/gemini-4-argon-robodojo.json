@@ -1,0 +1,18 @@
+{
+  "description": "Bimanual Direct-interface profile for RoboDojo's dual ARX X5 rig over the paid Gemini API: per-arm tools, move_both, guarded sequences, table projection and two-view triangulation. Used by deploy/robodojo (RUNG_PROFILE). Set model to fake for a run with no API key.",
+  "model": "gemini-4-argon",
+  "effort": "medium",
+  "max_tokens": 8192,
+  "timeout_s": 900,
+  "direct_config": {
+    "bimanual": true,
+    "motion_tools": "relative",
+    "max_speed_mps": 0.25,
+    "timeout_s": 8,
+    "table_projection": true,
+    "stereo_triangulation": true,
+    "camera_geometry_prompt": true,
+    "action_sequence": true,
+    "terminal_tools": true
+  }
+}

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "rung"
-version = "0.1.0"
+version = "0.1.1"
 description = "A harness that runs frontier models as robot manipulation policies, with RoboLab DROID support"
 readme = "README.md"
 requires-python = ">=3.11"

@@ -50,6 +50,44 @@ The public Gemini profile is [`configs/gemini-4-argon-direct.json`](../configs/g
 Geometry tools expose their declared sensor inputs; using depth queries changes the
 information available to a policy. State these settings in evaluation reports.
 
+### Two arms: the bimanual Direct profile
+
+`DirectConfig(bimanual=True)` addresses every arm an embodiment declares in
+`EmbodimentCapabilities.arms`. It is off by default and requires at least two arms. Off,
+on a two-arm rig, the single-arm profile drives the primary arm and the other arms hold.
+Single-arm requests are byte-identical with and without this code
+(`tests/test_direct_single_arm_golden.py`).
+
+| Tool | Change in the bimanual profile |
+|---|---|
+| `move_relative`, `move_to`, `move_relative_tcp`, `set_gripper` | Required `arm` argument (enum of arm names). Bounds, the reachable box and receipts are per arm |
+| `move_both` | One goal per arm; all arms start together and the move ends when every arm has arrived, stopped or timed out. The receipt names each arm's outcome |
+| `execute_sequence` | Each motion or gripper step names its `arm`; relative steps chain from that arm's planned pose |
+| `project_table`, `triangulate_point`, `probe_point` | Any calibrated view: `scene` and every wrist camera |
+| `observe`, `wait`, `done`, `give_up` | Unchanged; every arm holds |
+
+Each turn carries the root frame in words (from `capabilities.notes`) and one state block
+per arm: TCP pose and axes, jaw travel and opening, reachable box, base position and wrist
+camera, plus every wrist image labelled by arm. All arms share one root frame, so one
+target vocabulary addresses both.
+
+What turn-by-turn two-arm control can do: one arm at a time with the other holding,
+rigid joint moves with `move_both`, and handovers as a checked sequence. What it cannot
+do: closed-chain motion with compliance (two hands on one rigid object have no force
+control), reactive coordination inside a motion (conveyors, catching), or arm-to-arm
+collision avoidance. Each arm is checked only against its own box; the boxes overlap at
+the midline and the model is told so. L0 and L2 are single-arm.
+
+The two-arm bridge (`rung.adapters.bimanual`) is shared by two-arm adapters. A rig
+supplies a `RigCodec` with `observation(raw, t)` and `command(observation, setpoints,
+grips)`. Every arm keeps a Cartesian setpoint that walks toward its goal at the target's
+speed. A goal finishes `reached` within 6 mm and 0.05 rad, `blocked` after 1.5 s without
+progress, or `expired` at its deadline, per arm. The report's top-level outcome is the
+worst arm's.
+
+The RoboDojo profile is [`configs/gemini-4-argon-robodojo.json`](../configs/gemini-4-argon-robodojo.json);
+see the [RoboDojo guide](../deploy/robodojo/README.md).
+
 ## L2: semantic primitives
 
 ### Model input per turn

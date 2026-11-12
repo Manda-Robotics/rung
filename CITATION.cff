@@ -4,8 +4,8 @@ title: "Rung: a harness for running frontier models as robot manipulation polici
 type: software
 authors:
   - name: "Manda Robotics"
-version: "0.1.0"
-date-released: "2026-11-10"
+version: "0.1.1"
+date-released: "2026-11-12"
 license: Apache-2.0
 repository-code: "https://github.com/Manda-Robotics/rung"
 url: "https://mandarobotics.com"

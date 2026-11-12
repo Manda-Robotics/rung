@@ -43,6 +43,32 @@ FAKE_SCRIPT = (
     ("done", {"note": "scripted fake model finished"}),
 )
 
+_ZERO_ROT = [0.0, 0.0, 0.0]
+
+FAKE_SCRIPT_BIMANUAL = (
+    ("observe", {"note": "look at the scene"}),
+    (
+        "move_relative",
+        {
+            "arm": "left",
+            "delta_xyz_m": [0.0, 0.0, -0.03],
+            "rotation_vector_rad": _ZERO_ROT,
+            "note": "left arm descends",
+        },
+    ),
+    ("set_gripper", {"arm": "left", "action": "close", "note": "left grasp"}),
+    (
+        "move_both",
+        {
+            "left": {"delta_xyz_m": [0.0, 0.0, 0.03], "rotation_vector_rad": _ZERO_ROT},
+            "right": {"delta_xyz_m": [0.0, 0.0, 0.03], "rotation_vector_rad": _ZERO_ROT},
+            "note": "both arms lift together",
+        },
+    ),
+    ("done", {"note": "scripted fake model finished"}),
+)
+"""The fake's script for the bimanual profile: per-arm tools and one ``move_both``."""
+
 
 @dataclass
 class DirectProfile:
@@ -136,7 +162,8 @@ def build_direct_policy(
 ) -> DirectPolicy:
     """A fresh DirectPolicy for one episode over the paid Gemini API, or the fake.
 
-    ``profile.model == "fake"`` uses the scripted endpoint and needs no key. Any other
+    ``profile.model == "fake"`` uses the scripted endpoint and needs no key; a bimanual
+    profile gets the two-arm script. Any other
     model goes to the Gemini API with ``api_key`` or ``GEMINI_API_KEY`` from the
     environment, and must have a price on record in ``rung.backends.prices``.
     """
@@ -144,7 +171,12 @@ def build_direct_policy(
         session = GeminiSession(
             "fake-" + DEFAULT_MODEL,
             token_prices(DEFAULT_MODEL),
-            client=FakeClient(FakeInteractions(latency_s=fake_latency_s)),
+            client=FakeClient(
+                FakeInteractions(
+                    FAKE_SCRIPT_BIMANUAL if profile.direct_config.bimanual else FAKE_SCRIPT,
+                    latency_s=fake_latency_s,
+                )
+            ),
             effort=profile.effort,
             max_tokens=profile.max_tokens,
             trace_dir=trace_dir,

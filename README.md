@@ -14,10 +14,12 @@
 
 Rung connects Gemini, Claude and GPT policies to a robot control loop with bounded
 actions, measured execution feedback and auditable traces. Start with a CPU tabletop
-mock, then use the same policy interfaces with RoboLab's DROID Franka setup in Isaac Sim.
+mock, then use the same policy interfaces with RoboLab's DROID Franka setup or RoboDojo's
+two-arm ARX X5 rig in Isaac Sim.
 
 [Documentation](docs/README.md) · [Quickstart](docs/quickstart.md) ·
 [Examples](examples/README.md) · [RoboLab guide](deploy/robolab/README.md) ·
+[RoboDojo guide](deploy/robodojo/README.md) ·
 [Contributing](CONTRIBUTING.md)
 
 ![One recorded RoboLab episode](assets/robolab-demo.gif)
@@ -72,6 +74,7 @@ record an episode, or exercise direct-control tools with a fake model:
 ```sh
 python examples/mock_episode.py
 python examples/direct_mock.py
+python examples/robodojo_mock.py   # two arms, RoboDojo's call sequence, fake model
 ```
 
 Have a provisioned Rung API endpoint? Use the [remote episode example](examples/README.md#try-a-provisioned-rung-api)
@@ -104,6 +107,20 @@ Changing interfaces changes information, action vocabulary and recovery together
 Treat score differences as interface-package effects; see the
 [interface reference](docs/interfaces.md) and [evaluation protocol](docs/protocol.md).
 L1 point-and-phase control is planned and is not implemented.
+
+## Embodiments
+
+| Embodiment | Arms | Simulator | Interfaces | Guide |
+|---|---|---|---|---|
+| Tabletop mock | 1 | None, CPU | Direct, L0, L2 | [Quickstart](docs/quickstart.md) |
+| RoboLab DROID (Franka) | 1 | Isaac Sim 6.0.1, upstream RoboLab | Direct, L0, L2 | [RoboLab guide](deploy/robolab/README.md) |
+| RoboDojo dual ARX X5 | 2 | Isaac Sim 5.1, upstream RoboDojo | Direct (bimanual profile) | [RoboDojo guide](deploy/robodojo/README.md) |
+
+On two arms, every motion and gripper tool takes an `arm`, `move_both` moves both arms in
+one motion, and receipts report each arm. The
+[interface reference](docs/interfaces.md#two-arms-the-bimanual-direct-profile) lists
+what turn-by-turn two-arm control can and cannot do. RoboDojo episodes need a host
+driver below 595; the guide explains why.
 
 Models receive RGB images and proprioception, with camera geometry when enabled.
 The harness can use depth for geometry queries and primitive execution. These inputs
@@ -150,6 +167,7 @@ OpenAI-compatible server (vLLM, SGLang, Ollama). To add a simulator or hardware 
 | [`examples/`](examples/) | Offline runs, remote API use, and recording inspection/export |
 | [`docs/`](docs/) | Guides, contracts, protocol and architecture decisions |
 | [`deploy/robolab/`](deploy/robolab/) | Dockerfile, calibration, probes and benchmark runners |
+| [`deploy/robodojo/`](deploy/robodojo/) | RoboDojo install, one-episode runner and policy-server shim |
 | [`configs/`](configs/) | Model profile, dated prices and pinned task metadata |
 | [`tasks/`](tasks/) | Task manifests and development/validation/test roles |
 | [`tests/`](tests/) | Offline unit and regression suite |
@@ -170,7 +188,8 @@ the workflow and [security reporting](SECURITY.md) for vulnerabilities.
 ## Credits and citation
 
 Built by [Manda Robotics](https://mandarobotics.com). Rung integrates with NVIDIA's
-[RoboLab](https://github.com/NVlabs/RoboLab), Isaac Sim and Isaac Lab. L0 takes
+[RoboLab](https://github.com/NVlabs/RoboLab), Isaac Sim and Isaac Lab, and with
+[RoboDojo](https://github.com/RoboDojo-Benchmark/RoboDojo) through XPolicyLab. L0 takes
 inspiration from RoboCurve's [inspect-robots](https://github.com/robocurve/inspect-robots)
 agent policy. L2 draws on MOKA, PIVOT, ReKep, CoPa, SoFar and UniManip.
 See [CITATION.cff](CITATION.cff) to cite this software.

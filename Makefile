@@ -40,6 +40,7 @@ demo:
 examples:
 	@PYTHONPATH=src $(PY) examples/mock_episode.py
 	@PYTHONPATH=src $(PY) examples/direct_mock.py
+	@PYTHONPATH=src $(PY) examples/robodojo_mock.py
 	@PYTHONPATH=src $(PY) examples/own_model.py --selftest
 	@PYTHONPATH=src $(PY) examples/remote_episode.py --help
 	@$(PY) examples/inspect_recording.py --help

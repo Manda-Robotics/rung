@@ -26,6 +26,21 @@ task. It prints synthetic metered usage to exercise cost accounting; it incurs n
 The equivalent `rung --policy direct --model fake` command exits 1 because CLI exit codes
 reflect task success, even when the loop completed correctly.
 
+## Run two arms on a CPU
+
+RoboDojo's dual ARX X5 rig has a CPU fake with the simulator's real observation and
+action dicts. This drives it through RoboDojo's own call sequence with the bimanual
+Direct profile and the fake model, so per-arm tools, `move_both` and per-arm receipts
+run end to end with no simulator or key:
+
+```sh
+python examples/robodojo_mock.py
+python examples/robodojo_mock.py --policy scripted
+```
+
+`scripted` is the two-arm motion check that the [RoboDojo guide](../deploy/robodojo/README.md)
+runs first on a GPU host: each arm alone, both together, then each gripper closes.
+
 ## Use a model
 
 The direct Gemini route uses the standard library's HTTP client, so no SDK extra is
@@ -79,7 +94,9 @@ It does not run a policy or grade a task.
 
 - Try the [remote API example](../examples/README.md#try-a-provisioned-rung-api) with a
   provisioned endpoint, or inspect and export the offline recording first.
-- Read the [interface guide](interfaces.md) to choose Direct, L0 or L2.
+- Read the [interface guide](interfaces.md) to choose Direct, L0 or L2, and for the
+  two-arm profile.
 - Use the [RoboLab guide](../deploy/robolab/README.md) for a GPU benchmark.
+- Use the [RoboDojo guide](../deploy/robodojo/README.md) for two arms in Isaac Sim 5.1.
 - Follow the [adapter checklist](contracts.md#adapter-checklist) for a new embodiment.
 - See [contributing](../CONTRIBUTING.md) for tests, formatting and coverage.
