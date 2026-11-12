@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/rung-logo.png" alt="Rung logo" width="240">
+  <img src="assets/rung-logo.png" alt="rung" width="360">
 </p>
 
 # Rung
